@@ -1,64 +1,330 @@
+/* -----------------------------
+   Global Reset
+------------------------------ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* -----------------------------
+   Color System — Tech Minimal
+------------------------------ */
 :root {
-  /* Calm, neutral base colors */
-  --bg-primary: #fafaf9;
-  --bg-secondary: #f5f5f4;
+  /* Base Light Background */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
   --bg-card: #ffffff;
-  
-  /* Soft pastel accents */
-  --accent-sage: #a8b5a0;
-  --accent-blue: #b3c5d7;
-  --accent-amber: #e8c4a0;
-  
-  /* Text colors */
-  --text-primary: #1c1917;
-  --text-secondary: #57534e;
-  --text-muted: #a8a29e;
-  
-  /* Borders and shadows */
-  --border: #e7e5e4;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
-  
-  /* Semantic colors */
-  --success: #86a887;
-  --danger: #d89090;
-  --warning: #e8c490;
+
+  /* Tech Accent Gradients */
+  --accent-1: #8ec5fc;
+  --accent-2: #e0c3fc;
+  --accent-3: #a1ffce;
+  --accent-4: #faffd1;
+
+  /* Muted, subtle text */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  /* Note colors (soft pastel tech tones) */
+  --note-blue: #e0f2fe;
+  --note-green: #ecfdf5;
+  --note-yellow: #fefce8;
+  --note-purple: #f3e8ff;
+  --note-pink: #fce7f3;
+
+  /* Borders & shadows */
+  --border: #e2e8f0;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.1);
 }
 
+/* -----------------------------
+   Body & Root
+------------------------------ */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: var(--bg-primary);
+  background: var(--bg-primary);
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
   min-height: 100vh;
+  padding: 20px;
 }
 
-/* Scrollbar styling */
+/* -----------------------------
+   Scrollbar
+------------------------------ */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: var(--bg-secondary);
 }
-
 ::-webkit-scrollbar-thumb {
   background: var(--text-muted);
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
 }
+
+/* -----------------------------
+   Header
+------------------------------ */
+.header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 2rem 0;
+  margin-bottom: 1rem;
+}
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* -----------------------------
+   Notes Grid
+------------------------------ */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+.note-card {
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+.note-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 1)
+    ),
+    linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-4));
+  background-size: 100% 100%, 300% 100%;
+  background-position: 0 0, 0% 50%;
+  animation: glowMove 5s ease infinite alternate;
+}
+@keyframes glowMove {
+  from { background-position: 0 50%; }
+  to { background-position: 100% 50%; }
+}
+
+/* -----------------------------
+   Note Color Variants
+------------------------------ */
+.note-blue { background-color: var(--note-blue); }
+.note-green { background-color: var(--note-green); }
+.note-yellow { background-color: var(--note-yellow); }
+.note-purple { background-color: var(--note-purple); }
+.note-pink { background-color: var(--note-pink); }
+
+/* -----------------------------
+   Note Content
+------------------------------ */
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.note-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  flex: 1;
+  margin-right: 1rem;
+}
+.note-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.action-button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+.action-button:hover { background: rgba(0,0,0,0.05); }
+.note-content {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  word-break: break-word;
+}
+.note-footer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* -----------------------------
+   Floating Action Button
+------------------------------ */
+.fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.fab:hover { transform: scale(1.1); }
+
+/* -----------------------------
+   Modal
+------------------------------ */
+.modal-overlay {
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+.modal {
+  background: var(--bg-card);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: var(--shadow-lg);
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.close-button {
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:0.5rem;
+  border-radius:8px;
+  transition: background 0.2s ease;
+}
+.close-button:hover { background: rgba(0,0,0,0.05); }
+
+/* -----------------------------
+   Form
+------------------------------ */
+.form {
+  padding: 1.5rem;
+}
+.form-group { margin-bottom: 1.5rem; }
+.label { display:block; font-size:0.875rem; font-weight:500; margin-bottom:0.5rem; color: var(--text-secondary); }
+.input, .textarea {
+  width:100%;
+  padding:0.75rem;
+  border:1px solid var(--border);
+  border-radius:8px;
+  font-size:1rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  outline:none;
+}
+.input:focus, .textarea:focus { border-color: var(--accent-1); }
+
+/* -----------------------------
+   Modal Buttons
+------------------------------ */
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+.cancel-button {
+  padding:0.75rem 1.5rem;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:transparent;
+  color: var(--text-secondary);
+  cursor:pointer;
+  font-size:0.875rem;
+  font-weight:500;
+  transition:all 0.2s ease;
+}
+.cancel-button:hover { background: rgba(0,0,0,0.05); }
+.save-button {
+  padding:0.75rem 1.5rem;
+  border:none;
+  border-radius:8px;
+  background: var(--accent-1);
+  color:white;
+  cursor:pointer;
+  font-size:0.875rem;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  transition:all 0.2s ease;
+}
+.save-button:hover { background: var(--accent-2); }
+
+/* -----------------------------
+   Loading
+------------------------------ */
+.loading-container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+.loader {
+  width:40px;
+  height:40px;
+  border:3px solid var(--border);
+  border-top:3px solid var(--accent-1);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
