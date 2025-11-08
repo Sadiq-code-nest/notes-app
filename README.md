@@ -1,4 +1,4 @@
-# notes-app
+# Notes-app
 # Minimalistic Notes App
 
 A modern, minimalistic, and fully functional Notes App built with **React** (frontend), **Node.js + Express** (backend), **MySQL** (database), and **Nginx** (reverse proxy). The project uses **Docker Compose** to run all services in containers and is designed to be visually appealing, responsive, and easy to use.
