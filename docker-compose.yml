@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # MySQL Database
   db:
-    image: mysql:8.0
+    image: mysql:latest
     container_name: notes-db
     restart: always
     environment:
