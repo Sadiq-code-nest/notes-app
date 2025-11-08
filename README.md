@@ -45,7 +45,6 @@ notes-app/
 │   ├── Dockerfile
 │   ├── package.json
 │   ├── server.js
-│   └── wait-for-it.sh
 ├── nginx/
 │   ├── Dockerfile
 │   └── nginx.conf
